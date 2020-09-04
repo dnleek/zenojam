@@ -8,6 +8,7 @@ extents = Vector2( 128, 128 )
 
 [node name="Kinematic2D" type="KinematicBody2D"]
 script = ExtResource( 2 )
+shoot_cooldown = 50
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource( 1 )
