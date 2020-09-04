@@ -10,13 +10,16 @@ export (int) var gravity = 1200
 # cancelled.
 export (int) var cancel_jump_speed = -100
 export (int) var cancel_jump_threshold  = -250
+export (int) var max_hp = 100
 
 var velocity = Vector2()
 var jumping = false
 var screen_size
+var hp
 
 func _ready():
     screen_size = get_viewport_rect().size
+    hp = max_hp
 
 func get_input():
     velocity.x = 0
