@@ -67,8 +67,6 @@ func shoot():
 func _physics_process(delta):
     get_input()
     var is_on_platform = platform_detector.is_colliding()
-    if (is_on_platform):
-        print("hooray")
     velocity.y += gravity * delta
     if jumping and is_on_floor():
         jumping = false
