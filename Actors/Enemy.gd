@@ -7,29 +7,30 @@ export (int) var gravity = 1200
 var velocity = Vector2()
 var jumping = false
 var screen_size
+var dir = 1
 
 func _ready():
     screen_size = get_viewport_rect().size
-
-func get_input():
-    velocity.x = 0
-    var right = Input.is_action_pressed('ui_right')
-    var left = Input.is_action_pressed('ui_left')
-    var jump = Input.is_action_just_pressed('ui_select') || Input.is_action_just_pressed('ui_up')
-
-    if jump and is_on_floor():
-        jumping = true
-        velocity.y = jump_speed
-    if right:
-        velocity.x += run_speed
-    if left:
-        velocity.x -= run_speed
+    velocity.x = run_speed
 
 func _physics_process(delta):
-    get_input()
+    velocity.x = run_speed * dir
+    if jumping == true:
+        velocity.y += jump_speed
+        jumping = false
+
     velocity.y += gravity * delta
     if jumping and is_on_floor():
         jumping = false
     velocity = move_and_slide(velocity, Vector2(0, -1))
     position.x = clamp(position.x, 0, screen_size.x)
     position.y = clamp(position.y, 0, screen_size.y)
+
+
+func _on_Timer_timeout():
+    dir = dir * -1
+
+
+func _on_JumpTimer_timeout():
+    if is_on_floor():
+        jumping = true
