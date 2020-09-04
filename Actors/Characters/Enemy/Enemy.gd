@@ -8,11 +8,14 @@ export (float) var inaccuracy = 0
 
 var screen_size
 var dir = 1
+var rand
 
 func _ready():
     screen_size = get_viewport_rect().size
     velocity.x = run_speed
     $ShootTimer.wait_time = shoot_time
+    rand = RandomNumberGenerator.new()
+    rand.randomize()
 
 func _physics_process(delta):
     velocity.x = run_speed * dir
@@ -43,10 +46,7 @@ func _on_ShootTimer_timeout():
     if player_group:
         var player = player_group[0]
         var rot = player.global_position + aim_offset - global_position
-        var rand = RandomNumberGenerator.new()
-        rand.randomize()
         var angle_offset = rand.randf_range(0, inaccuracy) - (inaccuracy / 2)
-        print(angle_offset)
         var angle = rot.angle() + angle_offset
         var b = Projectile.instance()
         b.start(position, angle, false)
