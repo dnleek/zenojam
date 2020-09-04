@@ -8,7 +8,6 @@ extents = Vector2( 128, 128 )
 
 [node name="Kinematic2D" type="KinematicBody2D"]
 scale = Vector2( 0.15, 0.15 )
-collision/safe_margin = 0.1
 script = ExtResource( 1 )
 run_speed = 400
 jump_speed = -500

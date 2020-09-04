@@ -32,7 +32,6 @@ func get_input():
     
 func get_movement_input():
     is_on_platform = platform_detector.is_colliding()
-    print(is_on_platform)
     velocity.x = 0
     var right = Input.is_action_pressed('ui_right')
     var left = Input.is_action_pressed('ui_left')
