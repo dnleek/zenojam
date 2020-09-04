@@ -7,7 +7,12 @@
 extents = Vector2( 128, 128 )
 
 [node name="Kinematic2D" type="KinematicBody2D"]
+scale = Vector2( 0.15, 0.15 )
 script = ExtResource( 2 )
+run_speed = 400
+jump_speed = -500
+gravity = 1400
+cancel_jump_speed = -175
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource( 1 )
