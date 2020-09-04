@@ -3,6 +3,8 @@ extends "res://Actors/Characters/Character.gd"
 # Where they aim relative to player. Basically so multibullets don't get shot directly at player
 export var aim_offset = Vector2(0, 0)
 export var shoot_time = 1.0
+# Random offset to add/subtract to the rotation for projectiles
+export (float) var inaccuracy = 0
 
 var screen_size
 var dir = 1
@@ -41,6 +43,11 @@ func _on_ShootTimer_timeout():
     if player_group:
         var player = player_group[0]
         var rot = player.global_position + aim_offset - global_position
+        var rand = RandomNumberGenerator.new()
+        rand.randomize()
+        var angle_offset = rand.randf_range(0, inaccuracy) - (inaccuracy / 2)
+        print(angle_offset)
+        var angle = rot.angle() + angle_offset
         var b = Projectile.instance()
-        b.start(position, rot.angle(), false)
+        b.start(position, angle, false)
         get_parent().add_child(b)
