@@ -31,6 +31,8 @@ position = Vector2( 510.923, 208.265 )
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 position = Vector2( 85.4035, 50.9424 )
+collision_layer = 3
+collision_mask = 3
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
 position = Vector2( 485.932, 426.741 )
@@ -46,4 +48,4 @@ autoplay = "move"
 anims/move = SubResource( 2 )
 
 [node name="Enemy" parent="." instance=ExtResource( 3 )]
-position = Vector2( 219, 419 )
+position = Vector2( 225, 448 )

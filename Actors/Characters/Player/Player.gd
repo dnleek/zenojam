@@ -1,8 +1,4 @@
-extends KinematicBody2D
-
-export (int) var run_speed = 100
-export (int) var jump_speed = -400
-export (int) var gravity = 1200
+extends "res://Actors/Characters/Character.gd"
 
 
 const FLOOR_NORMAL = Vector2.UP
@@ -16,14 +12,24 @@ onready var platform_detector = $PlatformDetector
 export (int) var cancel_jump_speed = -100
 export (int) var cancel_jump_threshold  = -250
 
-var velocity = Vector2()
-var jumping = false
+# Shooting parameters
+export (int) var shoot_cooldown = 500
+
 var screen_size
+
+# Shooting values
+var Bullet = preload("res://Actors/Projectiles/Bullet.tscn")
+var next_shoot = 0 # Timestamp of when shooting is possible again
+
 
 func _ready():
     screen_size = get_viewport_rect().size
 
 func get_input():
+    get_movement_input()
+    get_shooting_input()
+    
+func get_movement_input():
     velocity.x = 0
     var right = Input.is_action_pressed('ui_right')
     var left = Input.is_action_pressed('ui_left')
@@ -39,6 +45,24 @@ func get_input():
         velocity.x += run_speed
     if left:
         velocity.x -= run_speed
+
+func get_shooting_input():
+    var shooting = Input.is_action_pressed('shoot')
+    
+    if shooting and can_shoot():
+        shoot()
+        next_shoot = OS.get_system_time_msecs() + shoot_cooldown
+
+func can_shoot():
+    return OS.get_system_time_msecs() > next_shoot
+
+func shoot():
+    var dir = get_global_mouse_position() - global_position
+    var b = Bullet.instance()
+    b.start(position, dir.angle(), true)
+    get_parent().add_child(b)
+    return true
+
 
 func _physics_process(delta):
     get_input()

@@ -1,11 +1,5 @@
-extends KinematicBody2D
+extends "res://Actors/Characters/Character.gd"
 
-export (int) var run_speed = 100
-export (int) var jump_speed = -400
-export (int) var gravity = 1200
-
-var velocity = Vector2()
-var jumping = false
 var screen_size
 var dir = 1
 
