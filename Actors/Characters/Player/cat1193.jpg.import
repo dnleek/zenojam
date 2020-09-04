@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/cat1193.jpg-ed5e2292d5e1119458446ab764ae3f1b.stex"
+path="res://.import/cat1193.jpg-6827c272d923641bac453ab726c7a69b.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Actors/Characters/cat1193.jpg"
-dest_files=[ "res://.import/cat1193.jpg-ed5e2292d5e1119458446ab764ae3f1b.stex" ]
+source_file="res://Actors/Characters/Player/cat1193.jpg"
+dest_files=[ "res://.import/cat1193.jpg-6827c272d923641bac453ab726c7a69b.stex" ]
 
 [params]
 
