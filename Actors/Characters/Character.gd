@@ -8,14 +8,11 @@ export (int) var gravity = 1200
 # Health parameters
 export (int) var max_hp = 100
 
+export (Resource) var Projectile = preload("res://Actors/Projectiles/Bullet.tscn")
+
 var velocity = Vector2()
 var jumping = false
 var hp
-
-# Declare member variables here. Examples:
-# var a = 2
-# var b = "text"
-
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -28,8 +25,6 @@ func _ready():
 #    pass
 
 func get_hit(damage):
-    print("took damage")
-    
     hp -= damage
     
     if hp <= 0:

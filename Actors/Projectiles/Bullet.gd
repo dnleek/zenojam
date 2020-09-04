@@ -4,12 +4,15 @@ export var speed = 250
 export var damage = 10
 
 var velocity = Vector2()
+var is_player_bullet
 
-func start(pos, dir, is_player_bullet):
+func start(pos, dir, player_bullet):
     rotation = dir
     position = pos
     velocity = Vector2(speed, 0).rotated(rotation)
     set_rotation(rotation + PI / 2)
+    is_player_bullet = player_bullet
+    
     _set_layer(is_player_bullet)
 
 # Called when the node enters the scene tree for the first time.
@@ -25,7 +28,6 @@ func _on_screen_exited():
     queue_free()
     
 func _on_body_enter(body):
-    
     if body.is_in_group("characters"):
         body.get_hit(damage)
     
