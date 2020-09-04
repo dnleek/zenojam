@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://Actors/Characters/Player/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Platforms/Platforms.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Actors/Characters/Enemy/Enemy.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Floor.tscn" type="PackedScene" id=4]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 902.348, 10 )
@@ -21,7 +22,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 0, 3 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 0,
-"values": [ Vector2( 840, 450 ), Vector2( 840, 180 ) ]
+"values": [ Vector2( 840, 350 ), Vector2( 840, 180 ) ]
 }
 
 [node name="Level" type="Node2D"]
@@ -41,11 +42,13 @@ shape = SubResource( 1 )
 [node name="Platforms" type="Node" parent="."]
 
 [node name="Platform" parent="Platforms" instance=ExtResource( 2 )]
-position = Vector2( 840, 450 )
+position = Vector2( 840, 350 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Platforms/Platform"]
 autoplay = "move"
 anims/move = SubResource( 2 )
 
 [node name="Enemy" parent="." instance=ExtResource( 3 )]
-position = Vector2( 225, 448 )
+position = Vector2( 371.041, 344.819 )
+
+[node name="Floor" parent="." instance=ExtResource( 4 )]
