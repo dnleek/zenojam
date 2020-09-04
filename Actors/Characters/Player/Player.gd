@@ -1,9 +1,5 @@
-extends KinematicBody2D
+extends "res://Actors/Characters/Character.gd"
 
-# Movement parameters
-export (int) var run_speed = 100
-export (int) var jump_speed = -400
-export (int) var gravity = 1200
 # Let the user cancel the jump early by letting go of the jump key.
 # cancel_jump_threshold is the minimum velocity at which point they can cancel,
 # and cancel_jump_speed is what their speed will be set to after the jump gets
@@ -13,8 +9,6 @@ export (int) var cancel_jump_threshold  = -250
 # Shooting parameters
 export (int) var shoot_cooldown = 500
 
-var velocity = Vector2()
-var jumping = false
 var screen_size
 
 # Shooting values
@@ -24,6 +18,7 @@ var next_shoot = 0 # Timestamp of when shooting is possible again
 
 func _ready():
     screen_size = get_viewport_rect().size
+
 func get_input():
     get_movement_input()
     get_shooting_input()

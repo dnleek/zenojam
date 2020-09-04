@@ -1,6 +1,7 @@
 extends Area2D
 
 export var speed = 250
+export var damage = 10
 
 var velocity = Vector2()
 
@@ -24,8 +25,9 @@ func _on_screen_exited():
     queue_free()
     
 func _on_body_enter(body):
-    print("Body entered the area")
-    print(body)
+    
+    if body.is_in_group("characters"):
+        body.get_hit(damage)
     
     queue_free()
 
