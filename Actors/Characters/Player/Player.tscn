@@ -22,7 +22,8 @@ shape = SubResource( 1 )
 texture = ExtResource( 2 )
 
 [node name="PlatformDetector" type="RayCast2D" parent="."]
+position = Vector2( 0, 120 )
 scale = Vector2( 1, 13 )
 enabled = true
-cast_to = Vector2( 0, 6 )
+cast_to = Vector2( 0, 2 )
 collide_with_areas = true
