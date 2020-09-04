@@ -30,6 +30,7 @@ tracks/0/keys = {
 
 [node name="Player" parent="." instance=ExtResource( 1 )]
 position = Vector2( 510.923, 208.265 )
+shoot_cooldown = 200
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 position = Vector2( 85.4035, 50.9424 )
@@ -44,6 +45,8 @@ shape = SubResource( 1 )
 
 [node name="Platform" parent="Platforms" instance=ExtResource( 2 )]
 position = Vector2( 840, 350 )
+collision_layer = 3
+collision_mask = 3
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Platforms/Platform"]
 autoplay = "move"
@@ -55,7 +58,11 @@ collision_mask = 3
 
 [node name="Enemy" parent="." instance=ExtResource( 3 )]
 position = Vector2( 345.718, 363.678 )
+shoot_time = 0.3
+inaccuracy = 0.25
 
 [node name="Enemy2" parent="." instance=ExtResource( 3 )]
 position = Vector2( 172.859, 362.555 )
 Projectile = ExtResource( 5 )
+aim_offset = Vector2( 0, -250 )
+shoot_time = 5.0
