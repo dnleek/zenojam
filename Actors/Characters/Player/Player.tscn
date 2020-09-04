@@ -8,6 +8,7 @@ extents = Vector2( 128, 128 )
 
 [node name="Kinematic2D" type="KinematicBody2D"]
 scale = Vector2( 0.15, 0.15 )
+collision/safe_margin = 0.1
 script = ExtResource( 1 )
 run_speed = 400
 jump_speed = -500
@@ -22,7 +23,8 @@ shape = SubResource( 1 )
 texture = ExtResource( 2 )
 
 [node name="PlatformDetector" type="RayCast2D" parent="."]
+position = Vector2( 0, 120 )
 scale = Vector2( 1, 13 )
 enabled = true
-cast_to = Vector2( 0, 6 )
+cast_to = Vector2( 0, 2 )
 collide_with_areas = true

@@ -20,6 +20,7 @@ var screen_size
 # Shooting values
 var Bullet = preload("res://Actors/Projectiles/Bullet.tscn")
 var next_shoot = 0 # Timestamp of when shooting is possible again
+var is_on_platform = false
 
 
 func _ready():
@@ -30,15 +31,18 @@ func get_input():
     get_shooting_input()
     
 func get_movement_input():
+    is_on_platform = platform_detector.is_colliding()
+    print(is_on_platform)
     velocity.x = 0
     var right = Input.is_action_pressed('ui_right')
     var left = Input.is_action_pressed('ui_left')
     var jump = Input.is_action_pressed('ui_select') || Input.is_action_pressed('ui_up')
     var jump_just_pressed = Input.is_action_just_pressed('ui_select') || Input.is_action_just_pressed('ui_up')
 
-    if jump_just_pressed and is_on_floor():
-        jumping = true
-        velocity.y = jump_speed
+    if jump_just_pressed:
+        if is_on_floor() or is_on_platform:
+            jumping = true
+            velocity.y = jump_speed
     if not jump and velocity.y < 0 and velocity.y >= cancel_jump_threshold:
         velocity.y = max(velocity.y, cancel_jump_speed)
     if right:
@@ -66,10 +70,7 @@ func shoot():
 
 func _physics_process(delta):
     get_input()
-    var is_on_platform = platform_detector.is_colliding()
     velocity.y += gravity * delta
-    if jumping and is_on_floor():
-        jumping = false
     velocity = move_and_slide_with_snap(velocity, Vector2(0, -1), FLOOR_NORMAL, not is_on_platform)
     position.x = clamp(position.x, 0, screen_size.x)
     position.y = clamp(position.y, 0, screen_size.y)
