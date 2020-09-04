@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=2]
 
-[ext_resource path="res://Actors/Player.tscn" type="PackedScene" id=1]
-[ext_resource path="res://Actors/Enemy.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Actors/Characters/Player/Player.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Actors/Characters/Enemy/Enemy.tscn" type="PackedScene" id=2]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 902.348, 10 )
@@ -13,6 +13,8 @@ position = Vector2( 404.923, 447.265 )
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 position = Vector2( 85.4035, 50.9424 )
+collision_layer = 3
+collision_mask = 3
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
 position = Vector2( 485.932, 426.741 )
