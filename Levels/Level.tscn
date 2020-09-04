@@ -9,7 +9,7 @@ extents = Vector2( 902.348, 10 )
 [node name="Node2D" type="Node2D"]
 
 [node name="Kinematic2D" parent="." instance=ExtResource( 1 )]
-position = Vector2( 510.923, 208.265 )
+position = Vector2( 404.923, 447.265 )
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 position = Vector2( 85.4035, 50.9424 )
@@ -21,4 +21,4 @@ position = Vector2( 485.932, 426.741 )
 shape = SubResource( 1 )
 
 [node name="Enemy" parent="." instance=ExtResource( 2 )]
-position = Vector2( 219, 419 )
+position = Vector2( 225, 448 )

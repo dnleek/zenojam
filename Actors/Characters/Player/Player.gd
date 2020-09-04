@@ -6,6 +6,7 @@ extends "res://Actors/Characters/Character.gd"
 # cancelled.
 export (int) var cancel_jump_speed = -100
 export (int) var cancel_jump_threshold  = -250
+
 # Shooting parameters
 export (int) var shoot_cooldown = 500
 
