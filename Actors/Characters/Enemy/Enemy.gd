@@ -35,7 +35,6 @@ func _physics_process(delta):
 func _on_Timer_timeout():
     dir = dir * -1
 
-
 func _on_JumpTimer_timeout():
     if is_on_floor():
         jumping = true

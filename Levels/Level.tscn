@@ -57,12 +57,12 @@ collision_layer = 3
 collision_mask = 3
 
 [node name="Enemy" parent="." instance=ExtResource( 3 )]
-position = Vector2( 345.718, 363.678 )
+position = Vector2( 46.9912, 390.925 )
 shoot_time = 0.3
 inaccuracy = 0.25
 
 [node name="Enemy2" parent="." instance=ExtResource( 3 )]
-position = Vector2( 172.859, 362.555 )
+position = Vector2( 214.678, 318.478 )
 Projectile = ExtResource( 5 )
 aim_offset = Vector2( 0, -250 )
 shoot_time = 5.0
