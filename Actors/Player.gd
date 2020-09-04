@@ -24,6 +24,7 @@ func get_input():
 	if jump_just_pressed and is_on_floor():
 		jumping = true
 		velocity.y = jump_speed
+
 	if not jump and velocity.y < 0 and velocity.y >= cancel_jump_threshold:
 		velocity.y = max(velocity.y, cancel_jump_speed)
 
