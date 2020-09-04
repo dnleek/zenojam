@@ -18,12 +18,12 @@ export (int) var shoot_cooldown = 500
 var screen_size
 
 # Shooting values
-var Bullet = preload("res://Actors/Projectiles/Bullet.tscn")
 var next_shoot = 0 # Timestamp of when shooting is possible again
 
 
 func _ready():
     screen_size = get_viewport_rect().size
+    add_to_group("Player")
 
 func get_input():
     get_movement_input()
@@ -58,10 +58,9 @@ func can_shoot():
 
 func shoot():
     var dir = get_global_mouse_position() - global_position
-    var b = Bullet.instance()
+    var b = Projectile.instance()
     b.start(position, dir.angle(), true)
     get_parent().add_child(b)
-    return true
 
 
 func _physics_process(delta):
