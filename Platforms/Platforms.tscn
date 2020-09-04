@@ -7,11 +7,14 @@
 [node name="Platform" type="KinematicBody2D"]
 scale = Vector2( 0.2, 0.05 )
 collision/safe_margin = 0.12
+motion/sync_to_physics = true
+__meta__ = {
+"_edit_group_": true
+}
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource( 1 )
 one_way_collision = true
 
 [node name="Sprite" type="Sprite" parent="."]
-position = Vector2( 1287.5, 8348.5 )
 texture = ExtResource( 1 )
