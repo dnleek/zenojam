@@ -1,5 +1,10 @@
 extends "res://Actors/Characters/Character.gd"
 
+
+const FLOOR_NORMAL = Vector2.UP
+
+onready var platform_detector = $PlatformDetector
+
 # Let the user cancel the jump early by letting go of the jump key.
 # cancel_jump_threshold is the minimum velocity at which point they can cancel,
 # and cancel_jump_speed is what their speed will be set to after the jump gets
@@ -36,7 +41,6 @@ func get_movement_input():
         velocity.y = jump_speed
     if not jump and velocity.y < 0 and velocity.y >= cancel_jump_threshold:
         velocity.y = max(velocity.y, cancel_jump_speed)
-
     if right:
         velocity.x += run_speed
     if left:
@@ -61,9 +65,10 @@ func shoot():
 
 func _physics_process(delta):
     get_input()
+    var is_on_platform = platform_detector.is_colliding()
     velocity.y += gravity * delta
     if jumping and is_on_floor():
         jumping = false
-    velocity = move_and_slide(velocity, Vector2(0, -1))
+    velocity = move_and_slide_with_snap(velocity, Vector2(0, -1), FLOOR_NORMAL, not is_on_platform)
     position.x = clamp(position.x, 0, screen_size.x)
     position.y = clamp(position.y, 0, screen_size.y)
