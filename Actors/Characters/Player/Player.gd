@@ -76,5 +76,4 @@ func _process(delta):
     $Hurtbox.set_collision_layer_bit(2, ModeManager.is_dark)
 
 func _on_RedPowerUp_powerup():
-    print("powerup")
     shoot_cooldown = shoot_cooldown / 2
