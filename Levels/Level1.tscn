@@ -1,10 +1,28 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://Floor.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Actors/Characters/Enemy/Enemy.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Actors/Characters/Player/Player.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Actors/Projectiles/MultiBullet.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Actors/PowerUps/RedPowerUp.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Platforms/Platforms.tscn" type="PackedScene" id=6]
+
+[sub_resource type="Animation" id=1]
+resource_name = "move"
+length = 10.0
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 1780, 600 ), Vector2( 1780, 1050 ) ]
+}
 
 [node name="Level 1" type="Node2D"]
 
@@ -12,7 +30,7 @@
 collision_layer = 1
 collision_mask = 1
 max_hp = 100000
-shoot_cooldown = 200
+shoot_cooldown = 100
 
 [node name="Floor" parent="." instance=ExtResource( 1 )]
 collision_use_kinematic = true
@@ -38,4 +56,11 @@ Projectile = ExtResource( 4 )
 [node name="RedPowerUp" parent="." instance=ExtResource( 5 )]
 position = Vector2( 1996, 1046 )
 scale = Vector2( 0.2, 0.2 )
+
+[node name="Platform" parent="." instance=ExtResource( 6 )]
+position = Vector2( 1780, 996 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Platform"]
+autoplay = "move"
+anims/move = SubResource( 1 )
 [connection signal="powerup" from="RedPowerUp" to="Player" method="_on_RedPowerUp_powerup"]
