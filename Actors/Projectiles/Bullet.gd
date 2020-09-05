@@ -41,8 +41,7 @@ func _on_screen_exited():
 func _on_area_enter(area):
     if area.is_in_group("characters"):
         area.owner.get_hit(damage)
-    
-    queue_free()
+        queue_free()
     
 func _on_body_enter(body):
     if body is TileMap:
