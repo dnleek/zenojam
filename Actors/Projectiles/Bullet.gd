@@ -37,7 +37,6 @@ func _on_screen_exited():
     queue_free()
     
 func _on_area_enter(area):
-    print(area)
     if area.is_in_group("characters"):
         area.owner.get_hit(damage)
     
