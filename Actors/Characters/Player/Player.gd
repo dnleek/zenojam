@@ -74,6 +74,8 @@ func _process(delta):
     # Update mask for light & dark layer bullet collisions.
     $Hurtbox.set_collision_layer_bit(0, not ModeManager.is_dark)
     $Hurtbox.set_collision_layer_bit(2, ModeManager.is_dark)
+    set_collision_layer_bit(0, not ModeManager.is_dark)
+    set_collision_layer_bit(2, ModeManager.is_dark)
 
 func _on_RedPowerUp_powerup():
     shoot_cooldown = shoot_cooldown / 2
