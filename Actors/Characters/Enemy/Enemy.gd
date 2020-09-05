@@ -28,8 +28,6 @@ func _physics_process(delta):
         jumping = false
 
     velocity = move_and_slide(velocity, Vector2(0, -1))
-    position.x = clamp(position.x, 0, screen_size.x)
-    position.y = clamp(position.y, 0, screen_size.y)
 
 
 func _on_Timer_timeout():

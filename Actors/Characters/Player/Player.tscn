@@ -27,3 +27,8 @@ scale = Vector2( 1, 13 )
 enabled = true
 cast_to = Vector2( 0, 2 )
 collide_with_areas = true
+
+[node name="Camera2D" type="Camera2D" parent="."]
+current = true
+drag_margin_h_enabled = true
+drag_margin_v_enabled = true
