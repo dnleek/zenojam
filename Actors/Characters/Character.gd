@@ -8,6 +8,8 @@ export (int) var gravity = 1200
 # Health parameters
 export (int) var max_hp = 100
 
+export (bool) var is_dark = false
+
 export (Resource) var Projectile = preload("res://Actors/Projectiles/Bullet.tscn")
 
 var velocity = Vector2()
