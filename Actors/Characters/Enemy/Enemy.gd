@@ -46,5 +46,5 @@ func _on_ShootTimer_timeout():
         var angle_offset = rand.randf_range(0, inaccuracy) - (inaccuracy / 2)
         var angle = rot.angle() + angle_offset
         var b = Projectile.instance()
-        b.start(position, angle, false)
+        b.start(position, angle, false, false)
         get_parent().add_child(b)
