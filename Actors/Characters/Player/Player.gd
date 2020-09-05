@@ -15,8 +15,6 @@ export (int) var cancel_jump_threshold  = -250
 # Shooting parameters
 export (int) var shoot_cooldown = 500
 
-onready var screen_size = get_viewport_rect().size
-
 # Shooting values
 var next_shoot = 0 # Timestamp of when shooting is possible again
 var is_on_platform = false
@@ -69,8 +67,6 @@ func _physics_process(delta):
     get_input()
     velocity.y += gravity * delta
     velocity = move_and_slide_with_snap(velocity, Vector2(0, -1), FLOOR_NORMAL, not is_on_platform)
-    position.x = clamp(position.x, 0, screen_size.x)
-    position.y = clamp(position.y, 0, screen_size.y)
     if (is_on_floor()):
         has_used_double_jump = false
 

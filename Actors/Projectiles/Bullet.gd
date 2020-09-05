@@ -25,6 +25,7 @@ func start(pos, dir, player_bullet, dark):
 func _ready():
     get_node("VisibilityNotifier2D").connect("screen_exited", self, "_on_screen_exited")
     connect("area_entered", self, "_on_area_enter")
+    connect("body_entered", self, "_on_body_enter")
 
 
 func _process(delta):
@@ -40,6 +41,10 @@ func _on_area_enter(area):
         area.owner.get_hit(damage)
     
     queue_free()
+    
+func _on_body_enter(body):
+    if body is TileMap:
+        queue_free()
 
 func _set_layer(player_bullet, dark):
     if player_bullet:
