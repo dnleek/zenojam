@@ -13,7 +13,7 @@ run_speed = 400
 jump_speed = -500
 gravity = 1400
 cancel_jump_speed = -175
-shoot_cooldown = 1000
+shoot_cooldown = 250
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource( 1 )

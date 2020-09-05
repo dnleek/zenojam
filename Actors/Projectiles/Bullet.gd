@@ -12,6 +12,8 @@ func start(pos, dir, player_bullet):
     velocity = Vector2(speed, 0).rotated(rotation)
     set_rotation(rotation + PI / 2)
     is_player_bullet = player_bullet
+    if is_player_bullet:
+        velocity *= 4
     
     _set_layer(is_player_bullet)
 
