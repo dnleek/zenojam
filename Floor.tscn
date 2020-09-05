@@ -271,5 +271,6 @@ points = PoolVector2Array( 0, 0, 64, 0, 64, 64, 0, 0 )
 
 [node name="Floor" type="TileMap"]
 tile_set = SubResource( 28 )
+collision_layer = 7
 format = 1
 tile_data = PoolIntArray( 393218, 0, 65543, 393219, 0, 2, 393220, 0, 2, 393221, 0, 2, 393222, 0, 2, 393223, 0, 2, 393224, 0, 2, 393225, 0, 2, 393226, 0, 2, 393227, 0, 2, 393228, 0, 2, 393229, 0, 2, 393230, 0, 65544 )
