@@ -17,4 +17,5 @@ func _ready():
 
 
 func _on_Player_health_changed(player_health):
+    print(player_health)
     hp_bar.value = player_health
