@@ -17,7 +17,7 @@ var hp
 # Called when the node enters the scene tree for the first time.
 func _ready():
     hp = max_hp
-    add_to_group("characters")
+    $Hurtbox.add_to_group("characters")
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

@@ -20,7 +20,7 @@ func start(pos, dir, player_bullet):
 # Called when the node enters the scene tree for the first time.
 func _ready():
     get_node("VisibilityNotifier2D").connect("screen_exited", self, "_on_screen_exited")
-    connect("body_entered", self, "_on_body_enter")
+    connect("area_entered", self, "_on_area_enter")
 
 
 func _process(delta):
@@ -29,9 +29,10 @@ func _process(delta):
 func _on_screen_exited():
     queue_free()
     
-func _on_body_enter(body):
-    if body.is_in_group("characters"):
-        body.get_hit(damage)
+func _on_area_enter(area):
+    print(area)
+    if area.is_in_group("characters"):
+        area.owner.get_hit(damage)
     
     queue_free()
 
