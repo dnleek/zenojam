@@ -30,6 +30,5 @@ func _ready():
 func get_hit(damage):
     hp -= damage
     emit_signal("health_changed", hp)
-    
     if hp <= 0:
         queue_free()

@@ -55,7 +55,7 @@ func _shoot_at_position(pos, projectile, dark, new_speed = 0):
     var angle_offset = rand.randf_range(0, inaccuracy) - (inaccuracy / 2)
     var angle = rot.angle() + angle_offset
     var b = projectile.instance()
-    b.start(position, angle, false, false, new_speed)
+    b.start(position, angle, false, dark, new_speed)
     get_parent().add_child(b)
     
 # Instantly fires bullets spread from startRot to endRot

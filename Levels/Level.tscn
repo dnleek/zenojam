@@ -72,10 +72,10 @@ shoot_time = 0.1
 [node name="PauseMenu" parent="." instance=ExtResource( 6 )]
 pause_mode = 2
 
-[node name="Enemy3" parent="." instance=ExtResource( 7 )]
+[node name="Boss" parent="." instance=ExtResource( 7 )]
 position = Vector2( 553.999, 106.972 )
 run_speed = 0
-max_hp = 1000
+max_hp = 5000
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
