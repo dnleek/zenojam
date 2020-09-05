@@ -7,7 +7,9 @@ var velocity = Vector2()
 var is_player_bullet
 var is_dark
 
-func start(pos, dir, player_bullet, dark):
+func start(pos, dir, player_bullet, dark, new_speed = 0):
+    if new_speed:
+        speed = new_speed
     rotation = dir
     position = pos
     is_player_bullet = player_bullet
