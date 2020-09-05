@@ -18,6 +18,5 @@ func _ready():
 
 
 func _on_Area2D_body_entered(body):
-    hide() # PowerUp disappears after being hit.
+    queue_free() # PowerUp disappears after being hit.
     emit_signal("powerup")
-    $CollisionShape2D.set_deferred("disabled", true)
