@@ -75,3 +75,8 @@ func _physics_process(delta):
     velocity = move_and_slide_with_snap(velocity, Vector2(0, -1), FLOOR_NORMAL, not is_on_platform)
     if (is_on_floor()):
         has_used_double_jump = false
+
+
+func _on_RedPowerUp_powerup():
+    shoot_cooldown = shoot_cooldown / 2
+
