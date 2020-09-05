@@ -55,7 +55,6 @@ autoplay = "move"
 anims/move = SubResource( 2 )
 
 [node name="Floor" parent="." instance=ExtResource( 4 )]
-collision_layer = 7
 collision_mask = 7
 
 [node name="Enemy" parent="." instance=ExtResource( 3 )]
