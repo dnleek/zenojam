@@ -3,6 +3,7 @@ extends "res://Actors/Characters/Character.gd"
 const FLOOR_NORMAL = Vector2.UP
 
 onready var platform_detector = $PlatformDetector
+var has_used_double_jump = false
 
 # Let the user cancel the jump early by letting go of the jump key.
 # cancel_jump_threshold is the minimum velocity at which point they can cancel,
@@ -37,7 +38,9 @@ func get_movement_input():
 
     if jump_just_pressed:
         if is_on_floor() or is_on_platform:
-            jumping = true
+            velocity.y = jump_speed
+        elif (not has_used_double_jump):
+            has_used_double_jump = true
             velocity.y = jump_speed
     if not jump and velocity.y < 0 and velocity.y >= cancel_jump_threshold:
         velocity.y = max(velocity.y, cancel_jump_speed)
@@ -68,14 +71,13 @@ func _physics_process(delta):
     velocity = move_and_slide_with_snap(velocity, Vector2(0, -1), FLOOR_NORMAL, not is_on_platform)
     position.x = clamp(position.x, 0, screen_size.x)
     position.y = clamp(position.y, 0, screen_size.y)
+    if (is_on_floor()):
+        has_used_double_jump = false
 
 func _process(delta):
     # Update mask for light & dark layer bullet collisions.
     set_collision_layer_bit(0, not ModeManager.is_dark)
     set_collision_layer_bit(2, ModeManager.is_dark)
-    
-    
-    
-    
-    
-    
+
+func _on_RedPowerUp_powerup():
+    shoot_cooldown = shoot_cooldown / 2

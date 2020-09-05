@@ -7,6 +7,7 @@ extents = Vector2( 463.811, 288.632 )
 
 [node name="Platform" type="KinematicBody2D"]
 scale = Vector2( 0.2, 0.05 )
+collision_layer = 3
 collision/safe_margin = 0.12
 motion/sync_to_physics = true
 __meta__ = {
