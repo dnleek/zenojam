@@ -81,7 +81,3 @@ func _process(delta):
 
 func _on_RedPowerUp_powerup():
     shoot_cooldown = shoot_cooldown / 2
-    
-func get_hit(damage):
-    .get_hit(damage)
-    print("player damage")
