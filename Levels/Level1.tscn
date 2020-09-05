@@ -65,10 +65,18 @@ position = Vector2( 1780, 600 )
 autoplay = "move"
 anims/move = SubResource( 1 )
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
-
-[node name="GUI" parent="CanvasLayer" instance=ExtResource( 7 )]
-
 [node name="PauseMenu" parent="." instance=ExtResource( 8 )]
-[connection signal="health_changed" from="Player" to="CanvasLayer/GUI" method="_on_Player_health_changed"]
+
+[node name="GUI" parent="." instance=ExtResource( 7 )]
+
+[node name="BossArena" type="Area2D" parent="."]
+collision_layer = 5
+collision_mask = 5
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="BossArena"]
+polygon = PoolVector2Array( -14.2405, 690.458, 1455.13, 693.287, 1460, 1022.67, 1502.04, 1023.33, 1504.05, 1096.08, -10.4035, 1103.04 )
+[connection signal="health_changed" from="Player" to="GUI" method="_on_Player_health_changed"]
+[connection signal="health_changed" from="Boss" to="GUI" method="_on_Boss_health_changed"]
 [connection signal="powerup" from="RedPowerUp" to="Player" method="_on_RedPowerUp_powerup"]
+[connection signal="body_entered" from="BossArena" to="GUI" method="_on_BossArena_body_entered"]
+[connection signal="body_exited" from="BossArena" to="GUI" method="_on_BossArena_body_exited"]

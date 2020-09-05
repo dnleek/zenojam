@@ -38,9 +38,7 @@ position = Vector2( 250, 274 )
 autoplay = "move"
 anims/move = SubResource( 1 )
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
-
-[node name="GUI" parent="CanvasLayer" instance=ExtResource( 4 )]
-
 [node name="PauseMenu" parent="." instance=ExtResource( 5 )]
-[connection signal="health_changed" from="Player" to="CanvasLayer/GUI" method="_on_Player_health_changed"]
+
+[node name="GUI" parent="." instance=ExtResource( 4 )]
+[connection signal="health_changed" from="Player" to="GUI" method="_on_Player_health_changed"]

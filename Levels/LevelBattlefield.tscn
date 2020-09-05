@@ -14,9 +14,7 @@ tile_data = PoolIntArray( 196614, 0, 5, 196615, 0, 6, 196616, 0, 6, 196617, 0, 7
 [node name="Player" parent="." instance=ExtResource( 2 )]
 position = Vector2( 531.687, 428.373 )
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
-
-[node name="GUI" parent="CanvasLayer" instance=ExtResource( 3 )]
-
 [node name="PauseMenu" parent="." instance=ExtResource( 4 )]
-[connection signal="health_changed" from="Player" to="CanvasLayer/GUI" method="_on_Player_health_changed"]
+
+[node name="GUI" parent="." instance=ExtResource( 3 )]
+[connection signal="health_changed" from="Player" to="GUI" method="_on_Player_health_changed"]
