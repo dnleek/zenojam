@@ -1,0 +1,21 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://Floor.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Actors/Characters/Player/Player.tscn" type="PackedScene" id=2]
+[ext_resource path="res://GUI.tscn" type="PackedScene" id=3]
+[ext_resource path="res://PauseMenu.tscn" type="PackedScene" id=4]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="Floor" parent="." instance=ExtResource( 1 )]
+tile_data = PoolIntArray( 196614, 0, 5, 196615, 0, 6, 196616, 0, 6, 196617, 0, 7, 327682, 0, 5, 327683, 0, 6, 327684, 0, 7, 327691, 0, 5, 327692, 0, 6, 327693, 0, 7, 458753, 0, 65543, 458754, 0, 2, 458755, 0, 2, 458756, 0, 2, 458757, 0, 2, 458758, 0, 2, 458759, 0, 2, 458760, 0, 2, 458761, 0, 2, 458762, 0, 2, 458763, 0, 2, 458764, 0, 2, 458765, 0, 2, 458766, 0, 65544 )
+
+[node name="Player" parent="." instance=ExtResource( 2 )]
+position = Vector2( 531.687, 428.373 )
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="GUI" parent="CanvasLayer" instance=ExtResource( 3 )]
+
+[node name="PauseMenu" parent="." instance=ExtResource( 4 )]
+[connection signal="health_changed" from="Player" to="CanvasLayer/GUI" method="_on_Player_health_changed"]

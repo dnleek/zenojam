@@ -9,6 +9,7 @@ export (int) var gravity = 1200
 export (int) var max_hp = 100
 
 export (bool) var is_dark = false
+signal health_changed
 
 export (Resource) var Projectile = preload("res://Actors/Projectiles/Bullet.tscn")
 
@@ -28,6 +29,7 @@ func _ready():
 
 func get_hit(damage):
     hp -= damage
+    emit_signal("health_changed", hp)
     
     if hp <= 0:
         queue_free()
