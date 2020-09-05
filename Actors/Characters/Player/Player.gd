@@ -1,6 +1,5 @@
 extends "res://Actors/Characters/Character.gd"
 
-
 const FLOOR_NORMAL = Vector2.UP
 
 onready var platform_detector = $PlatformDetector
@@ -15,15 +14,13 @@ export (int) var cancel_jump_threshold  = -250
 # Shooting parameters
 export (int) var shoot_cooldown = 500
 
-var screen_size
+onready var screen_size = get_viewport_rect().size
 
 # Shooting values
 var next_shoot = 0 # Timestamp of when shooting is possible again
 var is_on_platform = false
 
-
 func _ready():
-    screen_size = get_viewport_rect().size
     add_to_group("Player")
 
 func get_input():
@@ -62,9 +59,8 @@ func can_shoot():
 func shoot():
     var dir = get_global_mouse_position() - global_position
     var b = Projectile.instance()
-    b.start(position, dir.angle(), true)
+    b.start(position, dir.angle(), true, false)
     get_parent().add_child(b)
-
 
 func _physics_process(delta):
     get_input()
@@ -72,3 +68,14 @@ func _physics_process(delta):
     velocity = move_and_slide_with_snap(velocity, Vector2(0, -1), FLOOR_NORMAL, not is_on_platform)
     position.x = clamp(position.x, 0, screen_size.x)
     position.y = clamp(position.y, 0, screen_size.y)
+
+func _process(delta):
+    # Update mask for light & dark layer bullet collisions.
+    set_collision_layer_bit(0, not ModeManager.is_dark)
+    set_collision_layer_bit(2, ModeManager.is_dark)
+    
+    
+    
+    
+    
+    

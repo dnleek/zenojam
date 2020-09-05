@@ -5,17 +5,21 @@ export var damage = 10
 
 var velocity = Vector2()
 var is_player_bullet
+var is_dark
 
-func start(pos, dir, player_bullet):
+func start(pos, dir, player_bullet, dark):
     rotation = dir
     position = pos
+    is_player_bullet = player_bullet
+    is_dark = dark
+    
     velocity = Vector2(speed, 0).rotated(rotation)
     set_rotation(rotation + PI / 2)
-    is_player_bullet = player_bullet
-    if is_player_bullet:
+    
+    if player_bullet:
         velocity *= 4
     
-    _set_layer(is_player_bullet)
+    _set_layer(player_bullet, dark)
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -24,7 +28,9 @@ func _ready():
 
 
 func _process(delta):
-        position += velocity * delta
+    position += velocity * delta
+    var on_opposite_layer = (not ModeManager.is_dark and is_dark) or (ModeManager.is_dark and not is_dark)
+    get_node("Sprite").modulate.a = 0.5 if on_opposite_layer else 1
 
 func _on_screen_exited():
     queue_free()
@@ -35,10 +41,13 @@ func _on_body_enter(body):
     
     queue_free()
 
-func _set_layer(is_player_bullet):
-    if is_player_bullet:
+func _set_layer(player_bullet, dark):
+    if player_bullet:
         # Only collide with enemy layer
         set_collision_mask(2)
-    else:
-        # Only collide with player layer
+    elif not dark:
+        # Only collide with player light layer
         set_collision_mask(1)
+    else:
+        # Only collide with player dark layer
+        set_collision_mask(4)
