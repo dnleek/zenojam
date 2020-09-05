@@ -8,6 +8,8 @@ export (int) var gravity = 1200
 # Health parameters
 export (int) var max_hp = 100
 
+signal health_changed
+
 export (Resource) var Projectile = preload("res://Actors/Projectiles/Bullet.tscn")
 
 var velocity = Vector2()
@@ -26,6 +28,7 @@ func _ready():
 
 func get_hit(damage):
     hp -= damage
+    emit_signal("health_changed", hp)
     
     if hp <= 0:
         queue_free()
