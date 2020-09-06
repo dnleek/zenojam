@@ -5,6 +5,8 @@ extends Node2D
 # var a = 2
 # var b = "text"
 
+signal level_start
+
 var sceneMap = {
     "Level": "res://Levels/Level1.tscn",
     "Level 1": "res://Levels/Level.tscn",
@@ -15,6 +17,7 @@ var sceneMap = {
 # Called when the node enters the scene tree for the first time.
 func _ready():
     $Camera2D.current = false
+    emit_signal("level_start")
     pass # Replace with function body.
 
 
