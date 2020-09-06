@@ -1,13 +1,81 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=18 format=2]
 
 [ext_resource path="res://Actors/Characters/Player/Player.gd" type="Script" id=1]
 [ext_resource path="res://Actors/Characters/Player/cat1193.jpg" type="Texture" id=2]
+[ext_resource path="res://assets/art/daxbotsheet.png" type="Texture" id=3]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 128, 128 )
+extents = Vector2( 90.6178, 128 )
 
 [sub_resource type="CircleShape2D" id=2]
 radius = 50.0
+
+[sub_resource type="AtlasTexture" id=3]
+atlas = ExtResource( 3 )
+region = Rect2( 0, 0, 64, 68 )
+
+[sub_resource type="AtlasTexture" id=4]
+atlas = ExtResource( 3 )
+region = Rect2( 64, 136, 64, 68 )
+
+[sub_resource type="AtlasTexture" id=5]
+atlas = ExtResource( 3 )
+region = Rect2( 128, 136, 64, 68 )
+
+[sub_resource type="AtlasTexture" id=6]
+atlas = ExtResource( 3 )
+region = Rect2( 192, 136, 64, 68 )
+
+[sub_resource type="AtlasTexture" id=7]
+atlas = ExtResource( 3 )
+region = Rect2( 64, 68, 64, 68 )
+
+[sub_resource type="AtlasTexture" id=8]
+atlas = ExtResource( 3 )
+region = Rect2( 64, 0, 64, 68 )
+
+[sub_resource type="AtlasTexture" id=9]
+atlas = ExtResource( 3 )
+region = Rect2( 128, 0, 64, 68 )
+
+[sub_resource type="AtlasTexture" id=10]
+atlas = ExtResource( 3 )
+region = Rect2( 192, 0, 64, 68 )
+
+[sub_resource type="AtlasTexture" id=11]
+atlas = ExtResource( 3 )
+region = Rect2( 128, 68, 64, 68 )
+
+[sub_resource type="AtlasTexture" id=12]
+atlas = ExtResource( 3 )
+region = Rect2( 192, 68, 64, 68 )
+
+[sub_resource type="AtlasTexture" id=13]
+atlas = ExtResource( 3 )
+region = Rect2( 192, 136, 64, 68 )
+
+[sub_resource type="SpriteFrames" id=14]
+animations = [ {
+"frames": [ SubResource( 3 ) ],
+"loop": true,
+"name": "default",
+"speed": 12.0
+}, {
+"frames": [ SubResource( 4 ), SubResource( 5 ), SubResource( 6 ) ],
+"loop": false,
+"name": "jump",
+"speed": 5.0
+}, {
+"frames": [ SubResource( 7 ), SubResource( 8 ), SubResource( 9 ), SubResource( 10 ), SubResource( 11 ), SubResource( 12 ), SubResource( 11 ), SubResource( 10 ), SubResource( 9 ), SubResource( 8 ) ],
+"loop": true,
+"name": "walk",
+"speed": 12.0
+}, {
+"frames": [ SubResource( 13 ) ],
+"loop": true,
+"name": "airborne",
+"speed": 5.0
+} ]
 
 [node name="Kinematic2D" type="KinematicBody2D"]
 scale = Vector2( 0.15, 0.15 )
@@ -24,6 +92,7 @@ shoot_cooldown = 250
 shape = SubResource( 1 )
 
 [node name="Sprite" type="Sprite" parent="."]
+visible = false
 texture = ExtResource( 2 )
 
 [node name="PlatformDetector" type="RayCast2D" parent="."]
@@ -42,3 +111,9 @@ drag_margin_v_enabled = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
 shape = SubResource( 2 )
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+position = Vector2( -0.992183, 7.55377 )
+scale = Vector2( 4.5, 4.5 )
+frames = SubResource( 14 )
+playing = true
