@@ -17,7 +17,7 @@ func _ready():
 
 
 func _on_Button_button_down():
-    get_tree().change_scene("res://Levels/Level1.tscn")
+    get_tree().change_scene(get_tree().current_scene.filename)
 
 
 func _on_level_start():
