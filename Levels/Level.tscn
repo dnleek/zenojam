@@ -66,7 +66,7 @@ collision_mask = 7
 [node name="Boss" parent="." instance=ExtResource( 7 )]
 position = Vector2( 553.999, 91.972 )
 run_speed = 0
-max_hp = 5000
+max_hp = 12000
 
 [node name="GUI" parent="." instance=ExtResource( 8 )]
 

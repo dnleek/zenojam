@@ -1,6 +1,6 @@
 [gd_scene load_steps=19 format=2]
 
-[ext_resource path="res://Actors/Characters/Enemy/Boss1.gd" type="Script" id=1]
+[ext_resource path="res://Actors/Characters/Enemy/Boss2.gd" type="Script" id=1]
 [ext_resource path="res://assets/art/explosion3.png" type="Texture" id=2]
 [ext_resource path="res://assets/art/boss/boss1frame2.bmp" type="Texture" id=3]
 [ext_resource path="res://assets/art/boss/boss1frame1.bmp" type="Texture" id=4]
@@ -81,6 +81,7 @@ height = 80.0
 collision_layer = 2
 collision_mask = 2
 script = ExtResource( 1 )
+last_enemy = true
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 frames = SubResource( 11 )
@@ -105,7 +106,7 @@ collision_mask = 2
 shape = SubResource( 13 )
 
 [node name="SpreadTimer" type="Timer" parent="."]
-wait_time = 1.5
+wait_time = 5.0
 autostart = true
 
 [node name="HomingTimer" type="Timer" parent="."]
