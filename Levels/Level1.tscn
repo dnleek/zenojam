@@ -69,6 +69,7 @@ autoplay = "move"
 anims/move = SubResource( 1 )
 
 [node name="PauseMenu" parent="." instance=ExtResource( 8 )]
+pause_mode = 2
 
 [node name="GUI" parent="." instance=ExtResource( 7 )]
 

@@ -106,7 +106,8 @@ func _on_RedPowerUp_powerup():
 
 
 func _on_Kill_Floor_area_entered(area):
-    get_hit(69420)
+    if area == $Hurtbox:
+        get_hit(69420)
     
 func get_hit(damage):
     if (hp - damage <= 0):
