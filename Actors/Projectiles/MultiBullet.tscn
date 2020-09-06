@@ -10,7 +10,7 @@ collision_layer = 0
 collision_mask = 0
 script = ExtResource( 2 )
 speed = 100
-bullets = 5
+bullets = 4
 shot_rotation = 0.2
 wait_time = 0.1
 
