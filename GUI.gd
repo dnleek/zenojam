@@ -30,9 +30,7 @@ func _on_Player_health_changed(player_health):
 
 
 func _on_BossArena_body_entered(body):
-    print(body)
     if body == player:
-        print("is player")
         boss_hp_bar.show()
 
 
@@ -42,5 +40,4 @@ func _on_BossArena_body_exited(body):
 
 
 func _on_Boss_health_changed(boss_health):
-    print(boss_health)
     boss_hp_bar.value = boss_health
