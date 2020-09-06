@@ -40,6 +40,7 @@ autoplay = "move"
 anims/move = SubResource( 1 )
 
 [node name="PauseMenu" parent="." instance=ExtResource( 5 )]
+pause_mode = 2
 
 [node name="GUI" parent="." instance=ExtResource( 4 )]
 [connection signal="health_changed" from="Player" to="GUI" method="_on_Player_health_changed"]
