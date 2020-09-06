@@ -96,3 +96,7 @@ func _process(delta):
 
 func _on_RedPowerUp_powerup():
     shoot_cooldown = shoot_cooldown / 2
+
+
+func _on_Kill_Floor_area_entered(area):
+    .get_hit(69420)
