@@ -6,6 +6,7 @@ extends Node2D
 # var b = "text"
 
 signal level_start
+signal level_win
 
 var sceneMap = {
     "Level": "res://Levels/Level1.tscn",
@@ -27,7 +28,9 @@ func _process(delta):
 
 
 func _on_Boss_boss_killed():
-    print("boss killed")
+    emit_signal("level_win")
+    if get_tree().current_scene.name == "Level 3":
+        return
     get_tree().change_scene(sceneMap[get_tree().current_scene.name])
 
 
