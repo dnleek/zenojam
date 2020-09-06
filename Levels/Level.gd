@@ -14,14 +14,20 @@ var sceneMap = {
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+    $Camera2D.current = false
     pass # Replace with function body.
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#    pass
+func _process(delta):
+    pass
 
 
 func _on_Boss_boss_killed():
     print("boss killed")
     get_tree().change_scene(sceneMap[get_tree().current_scene.name])
+
+
+func _on_Player_player_killed(camera_position):
+    $Camera2D.position = camera_position
+    $Camera2D.current = true

@@ -76,9 +76,12 @@ scale = Vector2( -61.8083, -4.77283 )
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Kill Floor"]
 position = Vector2( 0, -39.5991 )
 shape = SubResource( 3 )
+
+[node name="Camera2D" type="Camera2D" parent="."]
 [connection signal="body_entered" from="BossArena" to="GUI" method="_on_BossArena_body_entered"]
 [connection signal="body_exited" from="BossArena" to="GUI" method="_on_BossArena_body_exited"]
 [connection signal="health_changed" from="Player" to="GUI" method="_on_Player_health_changed"]
+[connection signal="player_killed" from="Player" to="." method="_on_Player_player_killed"]
 [connection signal="boss_killed" from="Boss" to="." method="_on_Boss_boss_killed"]
 [connection signal="health_changed" from="Boss" to="GUI" method="_on_Boss_health_changed"]
 [connection signal="area_entered" from="Kill Floor" to="Player" method="_on_Kill_Floor_area_entered"]
