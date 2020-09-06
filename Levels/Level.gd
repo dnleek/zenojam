@@ -9,8 +9,8 @@ signal level_start
 signal level_win
 
 var sceneMap = {
-    "Level": "res://Levels/Level1.tscn",
     "Level 1": "res://Levels/Level.tscn",
+    "Level": "res://Levels/Level3.tscn",
     "LevelBattleField": "res://Levels/LevelSmashville.tscn",
     "LevelSmashville": "res://Levels/LevelFinalDestination.tscn"
 }
