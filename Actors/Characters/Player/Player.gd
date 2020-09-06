@@ -20,6 +20,8 @@ var next_shoot = 0 # Timestamp of when shooting is possible again
 var is_on_platform = false
 var is_facing_left = false
 
+var slow_mode = false
+
 onready var animation_player = $AnimatedSprite
 
 signal player_killed
@@ -45,6 +47,7 @@ func get_movement_input():
     var left = Input.is_action_pressed('ui_left')
     var jump = Input.is_action_pressed('ui_select') || Input.is_action_pressed('ui_up')
     var jump_just_pressed = Input.is_action_just_pressed('ui_select') || Input.is_action_just_pressed('ui_up')
+    var slow = Input.is_action_pressed("slow")
 
     if right and left:
         animation_player.play("default")
@@ -61,6 +64,13 @@ func get_movement_input():
     elif not left and not right:
         if is_on_floor() and not jump:
             animation_player.play("default")
+            
+    slow_mode = slow   
+    if slow_mode:
+        velocity.x = velocity.x / 2
+        $HurtboxVisible.show()
+    else:
+        $HurtboxVisible.hide()
 
     if jump_just_pressed:
         if is_on_floor() or is_on_platform:
@@ -114,6 +124,7 @@ func _on_Kill_Floor_area_entered(area):
     
 func get_hit(damage):
     if (hp - damage <= 0):
+        $HurtboxVisible.hide()
         animation_player.play("die")
         yield(animation_player, "animation_finished")
         emit_signal("player_killed", $Camera2D.get_camera_position())
