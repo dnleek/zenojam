@@ -1,9 +1,10 @@
-[gd_scene load_steps=29 format=2]
+[gd_scene load_steps=30 format=2]
 
 [ext_resource path="res://Actors/Characters/Player/Player.gd" type="Script" id=1]
 [ext_resource path="res://Actors/Characters/Player/cat1193.jpg" type="Texture" id=2]
 [ext_resource path="res://assets/art/daxbotsheet.png" type="Texture" id=3]
 [ext_resource path="res://assets/art/explosion4.png" type="Texture" id=4]
+[ext_resource path="res://Actors/Projectiles/PlayerBullet.tscn" type="PackedScene" id=5]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 90.6178, 128 )
@@ -131,6 +132,7 @@ script = ExtResource( 1 )
 run_speed = 400
 jump_speed = -500
 gravity = 1400
+Projectile = ExtResource( 5 )
 cancel_jump_speed = -175
 shoot_cooldown = 250
 
