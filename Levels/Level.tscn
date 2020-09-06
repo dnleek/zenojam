@@ -1,7 +1,8 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://Actors/Characters/Player/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Platforms/Platforms.tscn" type="PackedScene" id=2]
+[ext_resource path="res://DeathScreen.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Floor.tscn" type="PackedScene" id=4]
 [ext_resource path="res://PauseMenu.tscn" type="PackedScene" id=6]
 [ext_resource path="res://Actors/Characters/Enemy/Boss1.tscn" type="PackedScene" id=7]
@@ -27,6 +28,9 @@ tracks/0/keys = {
 "update": 0,
 "values": [ Vector2( 840, 350 ), Vector2( 840, 180 ) ]
 }
+
+[sub_resource type="RectangleShape2D" id=3]
+extents = Vector2( 27.1948, 20.8566 )
 
 [node name="Level" type="Node2D"]
 script = ExtResource( 9 )
@@ -65,8 +69,24 @@ run_speed = 0
 max_hp = 12000
 
 [node name="GUI" parent="." instance=ExtResource( 8 )]
+
+[node name="Kill Floor" type="Area2D" parent="."]
+position = Vector2( 556.294, 491.714 )
+scale = Vector2( -61.8083, -4.77283 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Kill Floor"]
+position = Vector2( 0, -39.5991 )
+shape = SubResource( 3 )
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="DeathScreen" parent="." instance=ExtResource( 3 )]
+[connection signal="level_start" from="." to="DeathScreen" method="_on_level_start"]
 [connection signal="body_entered" from="BossArena" to="GUI" method="_on_BossArena_body_entered"]
 [connection signal="body_exited" from="BossArena" to="GUI" method="_on_BossArena_body_exited"]
 [connection signal="health_changed" from="Player" to="GUI" method="_on_Player_health_changed"]
+[connection signal="player_killed" from="Player" to="." method="_on_Player_player_killed"]
+[connection signal="player_killed" from="Player" to="DeathScreen" method="_on_player_killed"]
 [connection signal="boss_killed" from="Boss" to="." method="_on_Boss_boss_killed"]
 [connection signal="health_changed" from="Boss" to="GUI" method="_on_Boss_health_changed"]
+[connection signal="area_entered" from="Kill Floor" to="Player" method="_on_Kill_Floor_area_entered"]

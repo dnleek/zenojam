@@ -3,7 +3,6 @@ extends "res://Actors/Characters/Character.gd"
 const FLOOR_NORMAL = Vector2.UP
 
 onready var platform_detector = $PlatformDetector
-onready var animation_player = $AnimatedSprite
 var has_used_double_jump = false
 
 # Let the user cancel the jump early by letting go of the jump key.
@@ -21,15 +20,24 @@ var next_shoot = 0 # Timestamp of when shooting is possible again
 var is_on_platform = false
 var is_facing_left = false
 
+onready var animation_player = $AnimatedSprite
+
+signal player_killed
+
 func _ready():
     add_to_group("Player")
-    $AnimatedSprite.play("default")
+    animation_player.play("default")
 
 func get_input():
     get_movement_input()
     get_shooting_input()
     
 func get_movement_input():
+    if animation_player.animation == "die":
+        velocity.x = 0
+        velocity.y = 0
+        # return here, otherwise die animation can be overridden by below code
+        return
     animation_player.flip_h = is_facing_left
     is_on_platform = platform_detector.is_colliding()
     velocity.x = 0
@@ -40,24 +48,26 @@ func get_movement_input():
 
     if right and left:
         animation_player.play("default")
-    if right:
+    elif right:
         is_facing_left = false
         velocity.x += run_speed
         if is_on_floor():
             animation_player.play("walk")
-    if left:
+    elif left:
         is_facing_left = true
         velocity.x -= run_speed
         if is_on_floor():
             animation_player.play("walk")
-    if not left and not right:
+    elif not left and not right:
         if is_on_floor() and not jump:
             animation_player.play("default")
+
     if jump_just_pressed:
         if is_on_floor() or is_on_platform:
             animation_player.play("jump")
             velocity.y = jump_speed
         elif (not has_used_double_jump):
+            animation_player.frame = 0
             animation_player.play("jump")
             has_used_double_jump = true
             velocity.y = jump_speed
@@ -96,3 +106,16 @@ func _process(delta):
 
 func _on_RedPowerUp_powerup():
     shoot_cooldown = shoot_cooldown / 2
+
+
+func _on_Kill_Floor_area_entered(area):
+    if area == $Hurtbox:
+        get_hit(69420)
+    
+func get_hit(damage):
+    if (hp - damage <= 0):
+        animation_player.play("die")
+        yield(animation_player, "animation_finished")
+        emit_signal("player_killed", $Camera2D.get_camera_position())
+    
+    .get_hit(damage)
