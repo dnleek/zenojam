@@ -38,7 +38,7 @@ script = ExtResource( 9 )
 
 [node name="Player" parent="." instance=ExtResource( 1 )]
 position = Vector2( 564.359, 224.199 )
-shoot_cooldown = 1
+shoot_cooldown = 50
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 position = Vector2( 85.4035, 50.9424 )
