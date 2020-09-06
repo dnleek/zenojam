@@ -79,7 +79,12 @@ collision_mask = 5
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="BossArena"]
 polygon = PoolVector2Array( -14.2405, 690.458, 1455.13, 693.287, 1460, 1022.67, 1502.04, 1023.33, 1504.05, 1096.08, -10.4035, 1103.04 )
+
+[node name="Camera2D" type="Camera2D" parent="."]
+drag_margin_h_enabled = true
+drag_margin_v_enabled = true
 [connection signal="health_changed" from="Player" to="GUI" method="_on_Player_health_changed"]
+[connection signal="player_killed" from="Player" to="." method="_on_Player_player_killed"]
 [connection signal="boss_killed" from="Boss" to="." method="_on_Boss_boss_killed"]
 [connection signal="health_changed" from="Boss" to="GUI" method="_on_Boss_health_changed"]
 [connection signal="powerup" from="RedPowerUp" to="Player" method="_on_RedPowerUp_powerup"]

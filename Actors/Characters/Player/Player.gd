@@ -22,6 +22,8 @@ var is_facing_left = false
 
 onready var animation_player = $AnimatedSprite
 
+signal player_killed
+
 func _ready():
     add_to_group("Player")
     animation_player.play("default")
@@ -65,6 +67,7 @@ func get_movement_input():
             animation_player.play("jump")
             velocity.y = jump_speed
         elif (not has_used_double_jump):
+            animation_player.frame = 0
             animation_player.play("jump")
             has_used_double_jump = true
             velocity.y = jump_speed
@@ -113,5 +116,6 @@ func get_hit(damage):
     if (hp - damage <= 0):
         animation_player.play("die")
         yield(animation_player, "animation_finished")
+        emit_signal("player_killed", $Camera2D.get_camera_position())
     
     .get_hit(damage)
