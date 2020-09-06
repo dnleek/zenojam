@@ -1,5 +1,7 @@
 extends "res://Actors/Characters/Enemy/Enemy.gd"
 
+signal boss_killed
+
 var HomingBullet = preload("res://Actors/Projectiles/DelayedHomingBullet.tscn")
 
 var spread_dark = false
@@ -27,9 +29,6 @@ func _process(delta):
     pass
 
 func get_hit(damage):
-    print(hp)
-    print(damage)
-    print()
     if hp > phase2_breakpoint && hp - damage <= phase2_breakpoint:
         curr_phase = PHASE2
         spread_bullets = 32
@@ -54,6 +53,9 @@ func get_hit(damage):
         $HomingTimer.wait_time = .4
         spread_bullet_speed = 200
         homing_bullet_speed = 200
+
+    if (hp - damage <= 0):
+        emit_signal("boss_killed")
         
     .get_hit(damage)
 
