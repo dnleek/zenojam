@@ -42,4 +42,5 @@ func _on_BossArena_body_exited(body):
 
 
 func _on_Boss_health_changed(boss_health):
+    print(boss_health)
     boss_hp_bar.value = boss_health
