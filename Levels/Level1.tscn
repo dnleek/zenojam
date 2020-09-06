@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://Floor.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Actors/Characters/Enemy/Enemy.tscn" type="PackedScene" id=2]
@@ -8,6 +8,7 @@
 [ext_resource path="res://Platforms/Platforms.tscn" type="PackedScene" id=6]
 [ext_resource path="res://GUI.tscn" type="PackedScene" id=7]
 [ext_resource path="res://PauseMenu.tscn" type="PackedScene" id=8]
+[ext_resource path="res://Levels/Level.gd" type="Script" id=9]
 
 [sub_resource type="Animation" id=1]
 resource_name = "move"
@@ -27,6 +28,7 @@ tracks/0/keys = {
 }
 
 [node name="Level 1" type="Node2D"]
+script = ExtResource( 9 )
 
 [node name="Player" parent="." instance=ExtResource( 3 )]
 collision_layer = 1
@@ -53,6 +55,7 @@ position = Vector2( 782.116, 489.946 )
 [node name="Boss" parent="." instance=ExtResource( 2 )]
 position = Vector2( 700.211, 869.344 )
 Projectile = ExtResource( 4 )
+last_enemy = true
 
 [node name="RedPowerUp" parent="." instance=ExtResource( 5 )]
 position = Vector2( 1996, 1046 )
@@ -76,6 +79,7 @@ collision_mask = 5
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="BossArena"]
 polygon = PoolVector2Array( -14.2405, 690.458, 1455.13, 693.287, 1460, 1022.67, 1502.04, 1023.33, 1504.05, 1096.08, -10.4035, 1103.04 )
 [connection signal="health_changed" from="Player" to="GUI" method="_on_Player_health_changed"]
+[connection signal="boss_killed" from="Boss" to="." method="_on_Boss_boss_killed"]
 [connection signal="health_changed" from="Boss" to="GUI" method="_on_Boss_health_changed"]
 [connection signal="powerup" from="RedPowerUp" to="Player" method="_on_RedPowerUp_powerup"]
 [connection signal="body_entered" from="BossArena" to="GUI" method="_on_BossArena_body_entered"]

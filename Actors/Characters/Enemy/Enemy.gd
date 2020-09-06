@@ -1,5 +1,9 @@
 extends "res://Actors/Characters/Character.gd"
 
+signal boss_killed
+
+# If this is the last enemy that needs to be killed.
+export var last_enemy = false
 # Where they aim relative to player. Basically so multibullets don't get shot directly at player
 export var aim_offset = Vector2(0, 0)
 export var shoot_time = 1.0
@@ -77,3 +81,8 @@ func _spread(startRot, endRot, clockwise, bullets, dark, alternating_dark, new_s
             
         get_parent().add_child(b)
 
+
+func get_hit(damage):
+    if (hp - damage <= 0 and last_enemy):
+        emit_signal("boss_killed")
+    .get_hit(damage)
