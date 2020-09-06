@@ -44,7 +44,7 @@ func _on_area_enter(area):
         queue_free()
     
 func _on_body_enter(body):
-    if body is TileMap:
+    if body is TileMap or body.name == "Platform":
         queue_free()
 
 func _set_layer(player_bullet, dark):
