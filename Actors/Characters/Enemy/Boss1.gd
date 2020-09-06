@@ -18,9 +18,12 @@ var spread_bullets = 8
 var spread_bullet_speed = 75
 var homing_bullet_speed = 200
 
+onready var animation = $AnimatedSprite
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
     gravity = 0
+    $AnimatedSprite.play("default")
     pass # Replace with function body.
 
 
@@ -55,6 +58,8 @@ func get_hit(damage):
         homing_bullet_speed = 200
 
     if (hp - damage <= 0):
+        animation.play("die")
+        yield(animation, "animation_finished")
         emit_signal("boss_killed")
         
     .get_hit(damage)
