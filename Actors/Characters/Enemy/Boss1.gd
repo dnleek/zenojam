@@ -1,7 +1,5 @@
 extends "res://Actors/Characters/Enemy/Enemy.gd"
 
-signal boss_killed
-
 var HomingBullet = preload("res://Actors/Projectiles/DelayedHomingBullet.tscn")
 
 var spread_dark = false

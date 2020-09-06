@@ -7,7 +7,7 @@ extends Node2D
 
 var sceneMap = {
     "Level": "res://Levels/Level1.tscn",
-    "res://Levels/Level1": "res://Levels/LevelBattleField.tscn",
+    "Level 1": "res://Levels/Level.tscn",
     "LevelBattleField": "res://Levels/LevelSmashville.tscn",
     "LevelSmashville": "res://Levels/LevelFinalDestination.tscn"
 }
